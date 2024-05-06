@@ -17,9 +17,13 @@ import uuid
 from mtcnn import MTCNN
 detector = MTCNN()
 
-model = tf.keras.models.load_model("./model_finishvgg16_30.h5")
+@st.cache_resource()
+def load_model():
+    model = tf.keras.models.load_model("./model_finishvgg16_30.h5")
+    return model
 
-img_path = './000051.jpg'
+model = load_model()
+
 def load_test_image():
     
 
