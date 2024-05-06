@@ -17,7 +17,9 @@ import uuid
 from mtcnn import MTCNN
 detector = MTCNN()
 
-@st.cache_resource()
+import subprocess; print(subprocess.run(['ls -la'], shell=True))
+                                         
+#@st.experimental_singleton
 def load_model():
     model = tf.keras.models.load_model("./model_finishvgg16_30.h5")
     return model
