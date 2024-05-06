@@ -1,5 +1,5 @@
-cv2
-PIL
+opencv-python
+pillow
 tensorflow
 numpy
 pandas
