@@ -1,1 +1,6 @@
-
+opencv-python
+pillow
+tensorflow
+numpy
+pandas
+mtcnn
