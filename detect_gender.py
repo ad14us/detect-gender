@@ -154,13 +154,26 @@ def predict_face(working_dir):
     )
     predict = model.predict(other_generator)
     prediction = predict.argmax(axis=-1)
-    i = 0
-    for img in range(len(df_img))  :
-        print(f"{img} : {prediction[i]}")
+    percentage = predict.max(axis=-1)*100
+    i = 0 
+    #for img in range(len(df_img))  :
+    #    print(f"{img} : {prediction[i]}")
+    #    i = i+1
+    #gender = ["Male" if ele == 1 else "Female" for ele in prediction]
+    i=0
+    caption = []
+    for ele in prediction:
+        if ele == 1:
+            gender = "Male"
+        else:
+            gender = "Female"
+        teks = f"{gender} ({int(percentage[i])}%)"
+        caption.append(teks)
         i = i+1
-    gender = ["Male" if ele == 1 else "Female" for ele in prediction]
+    print(caption)
+
     pathlist = df_img['Path'].to_list()
-    st.image(pathlist,width=70, caption=gender)
+    st.image(pathlist,width=70, caption=caption)
 
     del st.session_state['working_dir']
 
