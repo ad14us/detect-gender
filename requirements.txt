@@ -1,0 +1,6 @@
+cv2
+PIL
+tensorflow
+numpy
+pandas
+mtcnn
