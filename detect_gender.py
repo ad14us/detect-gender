@@ -2,6 +2,7 @@ import io, os, glob, shutil
 import cv2
 from PIL import Image
 import streamlit as st
+import urllib.request
 
 
 import tensorflow as tf
@@ -19,10 +20,13 @@ detector = MTCNN()
 
 import subprocess; print(subprocess.run(['ls -la'], shell=True))
                                          
-#@st.experimental_singleton
+
+@st.experimental_singleton
 def load_model():
-    model = tf.keras.models.load_model("./model_finishvgg16_30.h5")
-    return model
+    if not os.path.isfile('model.h5'):
+        urllib.request.urlretrieve('https://github.com/ad14us/detect-gender/raw/main/model_finishvgg16_30.h5', 'model.h5')
+    return tf.keras.models.load_model('model.h5')
+
 
 model = load_model()
 
